@@ -461,33 +461,6 @@ button {
   font-weight: bold;
   cursor: pointer;
 }
-#rotateNotice {
-  display: none;
-}
-
-/* 핸드폰 세로 화면 */
-@media (orientation: portrait) {
-  #room {
-    display: none;
-  }
-
-  #rotateNotice {
-    display: flex;
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-
-    align-items: center;
-    justify-content: center;
-
-    background: #171717;
-    color: white;
-
-    font-size: 22px;
-    font-weight: bold;
-    text-align: center;
-  }
-}
 
 /* 핸드폰 가로 화면 */
 @media (orientation: landscape) {
