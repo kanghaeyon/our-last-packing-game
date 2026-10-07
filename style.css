@@ -467,7 +467,7 @@ button {
 
 /* 핸드폰 세로 화면 */
 @media (orientation: portrait) {
-  #game {
+  #room {
     display: none;
   }
 
