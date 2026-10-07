@@ -1,0 +1,463 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #161616;
+  font-family: Arial, sans-serif;
+}
+
+button {
+  font-family: inherit;
+}
+
+#game {
+  width: 100vw;
+  height: 100dvh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #161616;
+}
+
+
+/* =========================
+   게임 방
+========================= */
+
+#room {
+  position: relative;
+
+  width: min(100vw, 177.78vh);
+  aspect-ratio: 16 / 9;
+
+  max-height: 100dvh;
+
+  overflow: hidden;
+
+  background: #ddd;
+
+  touch-action: manipulation;
+}
+
+#roomBg {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  z-index: 0;
+  pointer-events: none;
+}
+
+
+/* =========================
+   위 HUD
+========================= */
+
+#hud {
+  position: absolute;
+
+  left: 50%;
+  top: 2.5%;
+
+  transform: translateX(-50%);
+
+  width: 76%;
+
+  z-index: 100;
+
+  background: rgba(255, 250, 245, 0.9);
+
+  border: 2px solid rgba(125, 90, 70, 0.55);
+  border-radius: 14px;
+
+  padding: 7px 10px;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+#hudTitle {
+  text-align: center;
+
+  font-size: clamp(14px, 2vw, 22px);
+  font-weight: 700;
+
+  color: #49372d;
+
+  margin-bottom: 5px;
+}
+
+#targetList {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 6px;
+
+  flex-wrap: nowrap;
+}
+
+.target {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 3px;
+
+  padding: 3px 7px;
+
+  font-size: clamp(9px, 1.35vw, 14px);
+
+  color: #4b4039;
+
+  background: rgba(240, 227, 215, 0.95);
+
+  border-radius: 8px;
+
+  white-space: nowrap;
+}
+
+.target img {
+  width: 16px;
+  height: 16px;
+
+  object-fit: contain;
+}
+
+.target.done {
+  opacity: 0.4;
+
+  text-decoration: line-through;
+}
+
+.target.done::after {
+  content: "✓";
+
+  margin-left: 2px;
+
+  font-weight: bold;
+}
+
+#countBox {
+  margin-top: 4px;
+
+  text-align: center;
+
+  font-size: clamp(9px, 1.3vw, 13px);
+
+  color: #705e53;
+}
+
+
+/* =========================
+   캐릭터
+========================= */
+
+.character {
+  position: absolute;
+  width: 9%;
+  object-fit: contain;
+  z-index: 200;
+  transition:
+  left 0.12s linear,
+  opacity 0.35s ease,
+  transform 0.12s linear;
+}
+#girl {
+  left: 39%;
+  bottom: 13%;
+  z-index: 200;
+}
+
+#boy {
+  left: 51%;
+  bottom: 13%;
+  z-index: 200;
+}
+
+.item {
+  position: absolute;
+  z-index: 70;   /* 캐릭터보다 위 */
+  border: none;
+  background: transparent;
+  padding: 4px;
+  cursor: pointer;
+  opacity: 0.95;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+}
+
+.item.found {
+  display: none;
+}
+
+/* 휴대폰 - 침대 오른쪽 이불 쪽 */
+#item-phone {
+  left: 30%;
+  top: 45%;
+  width: 3.0%;
+  transform: rotate(-18deg);
+  z-index: 80;
+}
+
+/* 립스틱 - 화장대 의자 근처 바닥 */
+#item-lip {
+  left: 24%;
+  top: 15%;
+  width: 2.0%;
+  transform: rotate(12deg);
+  z-index: 80;
+}
+
+/* 충전기 - 협탁 아래쪽 */
+#item-charge {
+  left: 39.5%;
+  top: 60%;
+  width: 4.7%;
+  transform: rotate(10deg);
+  z-index: 80;
+}
+
+/* 사진 - 협탁 위 소품처럼 */
+#item-photo {
+  left: 73%;
+  top: 32%;
+  width: 4.4%;
+  transform: rotate(-4deg);
+  z-index: 80;
+}
+
+/* 열쇠 - 캐리어/가방 앞 바닥 */
+#item-key {
+  left: 96%;
+  top: 95%;
+  width: 2.2%;
+  transform: rotate(18deg);
+  z-index: 80;
+}
+
+
+/* =========================
+   대화창
+========================= */
+
+#dialogueBox {
+  position: absolute;
+
+  left: 50%;
+  bottom: 2%;
+
+  transform: translateX(-50%);
+
+  width: 76%;
+
+  min-height: 15%;
+
+  z-index: 300;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  border: 2px solid #897266;
+  border-radius: 14px;
+
+  padding: 11px 14px 10px;
+}
+
+#speaker {
+  display: inline-block;
+
+  padding: 4px 9px;
+
+  border-radius: 7px;
+
+  background: #554c4a;
+  color: white;
+
+  font-size: clamp(10px, 1.3vw, 14px);
+
+  margin-bottom: 5px;
+}
+
+#dialogue {
+  padding-right: 66px;
+
+  font-size: clamp(12px, 1.8vw, 19px);
+
+  line-height: 1.35;
+
+  color: #333;
+}
+
+#nextBtn {
+  position: absolute;
+
+  right: 10px;
+  bottom: 9px;
+
+  border: 0;
+
+  background: #6275ad;
+  color: white;
+
+  border-radius: 9px;
+
+  padding: 7px 13px;
+
+  font-size: clamp(10px, 1.3vw, 14px);
+
+  cursor: pointer;
+}
+
+#skipBtn {
+  position: absolute;
+
+  right: 1.5%;
+  top: 2.5%;
+
+  z-index: 130;
+
+  border: 0;
+
+  padding: 7px 10px;
+
+  border-radius: 9px;
+
+  background: rgba(45, 45, 45, 0.75);
+  color: white;
+
+  cursor: pointer;
+
+  font-size: clamp(9px, 1.3vw, 13px);
+}
+
+
+/* =========================
+   챕터 완료
+========================= */
+
+#chapterClear {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 200;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.clearBox {
+  background: rgba(255,255,255,0.96);
+
+  padding: 22px 32px;
+
+  border-radius: 18px;
+
+  text-align: center;
+
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.clearTitle {
+  font-size: 23px;
+  font-weight: bold;
+
+  margin-bottom: 8px;
+}
+
+.clearText {
+  font-size: 15px;
+}
+
+
+/* =========================
+   공통
+========================= */
+
+.hidden {
+  display: none !important;
+}
+
+
+/* 세로폰 안내 */
+@media (orientation: portrait) {
+
+  #room {
+    width: 100vw;
+  }
+
+  #hud {
+    width: 86%;
+  }
+
+  .character {
+    width: 11%;
+  }
+}
+#startScreen {
+  position: absolute;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(25, 20, 18, 0.45);
+}
+
+.startBox {
+  text-align: center;
+  background: rgba(255, 250, 245, 0.96);
+  border: 2px solid #9b7b68;
+  border-radius: 18px;
+  padding: 24px 34px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.22);
+}
+
+.startTitle {
+  font-size: 28px;
+  font-weight: bold;
+  color: #49372d;
+  margin-bottom: 8px;
+}
+
+.startSub {
+  font-size: 14px;
+  color: #76665d;
+  margin-bottom: 16px;
+}
+
+#startBtn {
+  border: none;
+  padding: 11px 24px;
+  border-radius: 12px;
+  background: #6579ad;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}

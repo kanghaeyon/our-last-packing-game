@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>우리의 마지막 짐</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="game">
+
+  <div id="room">
+
+    <!-- 실제 방 배경 -->
+    <img id="roomBg" src="room_bg.png" alt="방 배경">
+
+    <!-- 방 안 HUD -->
+    <div id="hud">
+      <div id="hudTitle">우리의 마지막 짐</div>
+
+      <div id="targetList">
+        <div class="target" data-target="phone">
+          <img src="item_phone.png"> 휴대폰
+        </div>
+
+        <div class="target" data-target="lip">
+          <img src="item_lipstick.png"> 립스틱
+        </div>
+
+        <div class="target" data-target="charge">
+          <img src="item_charger.png"> 충전기
+        </div>
+
+        <div class="target" data-target="photo">
+          <img src="item_photo.png"> 사진
+        </div>
+
+        <div class="target" data-target="key">
+          <img src="item_key.png"> 열쇠
+        </div>
+      </div>
+
+      <div id="countBox">
+        <span id="count">0</span> / 5
+      </div>
+    </div>
+
+<div id="startScreen">
+  <div class="startBox">
+    <div class="startTitle">우리의 마지막 짐</div>
+    <div class="startSub">화면을 터치해서 시작</div>
+    <button id="startBtn">START</button>
+  </div>
+</div>
+
+    <!-- 여자 캐릭터 -->
+    <img
+      id="girl"
+      class="character"
+      src="girl_front.png"
+      alt="여자"
+    >
+
+    <!-- 남자 캐릭터 -->
+    <img
+      id="boy"
+      class="character"
+      src="boy_front.png"
+      alt="남자"
+    >
+
+
+    <!-- 실제 숨은 물건 -->
+
+    <button class="item" id="item-phone" data-id="phone">
+      <img src="item_phone.png" alt="휴대폰">
+    </button>
+
+    <button class="item" id="item-lip" data-id="lip">
+      <img src="item_lipstick.png" alt="립스틱">
+    </button>
+
+    <button class="item" id="item-charge" data-id="charge">
+      <img src="item_charger.png" alt="충전기">
+    </button>
+
+    <button class="item" id="item-photo" data-id="photo">
+      <img src="item_photo.png" alt="사진">
+    </button>
+
+    <button class="item" id="item-key" data-id="key">
+      <img src="item_key.png" alt="열쇠">
+    </button>
+
+
+    <!-- 대화창 -->
+    <div id="dialogueBox">
+      <div id="speaker">나</div>
+      <div id="dialogue">또 그 얘기 피하려고?</div>
+
+    </div>
+
+    <button id="skipBtn">SKIP</button>
+
+
+    <!-- 전부 찾았을 때 -->
+    <div id="chapterClear" class="hidden">
+      <div class="clearBox">
+        <div class="clearTitle">짐을 다 챙겼다.</div>
+        <div class="clearText">다른 방도 확인해보자.</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<audio id="bgm" src="bgm.mp3" loop></audio>
+<audio id="itemSound" src="item.mp3"></audio>
+<audio id="walkSound" src="walk.mp3" loop></audio>
+<audio id="doorSound" src="door.mp3"></audio>
+
+<script src="game.js"></script>
+
+</body>
+</html>
