@@ -296,6 +296,7 @@ function startGame() {
 
   gameStarted = true;
   storySkipped = true;
+  beginTimer();
 
   if (walkSound) {
     walkSound.pause();
@@ -367,6 +368,8 @@ items.forEach(item => {
     /* 전부 찾음 */
     if (found === items.length) {
 
+      clearInterval(timerInterval);
+timerInterval = null;
       setTimeout(() => {
 
         chapterClear.classList.remove("hidden");
@@ -402,3 +405,48 @@ startBtn.addEventListener("click", async () => {
 
   runStory();
 });
+
+/* ===== 100초 타이머 ===== */
+
+let timeLeft = 60;
+let timerInterval = null;
+
+function beginTimer() {
+  if (timerInterval !== null) return;
+
+  const timerBox = document.getElementById("timerBox");
+
+  function updateTimer() {
+    const min = Math.floor(timeLeft / 60);
+    const sec = timeLeft % 60;
+
+    timerBox.textContent =
+      `⏱ 남은 시간 ${String(min).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
+
+    timerBox.classList.toggle("danger", timeLeft <= 20);
+  }
+
+  updateTimer();
+
+  timerInterval = setInterval(() => {
+    if (!gameStarted) return;
+
+    timeLeft--;
+    updateTimer();
+
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      gameStarted = false;
+
+      chapterClear.querySelector(".clearTitle").textContent =
+  "⏰ 시간 초과!";
+
+chapterClear.querySelector(".clearText").textContent =
+  "짐을 다 찾지 못했어요. 다시 도전해 보세요!";
+
+chapterClear.classList.remove("hidden");
+
+    }
+  }, 1000);
+}

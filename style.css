@@ -540,3 +540,95 @@ html, body {
   width: 11px;
   height: 11px;
 }
+/* 체크리스트 바깥 네모 제거 */
+#room #hud {
+  width: 76%;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+}
+/* 체크리스트 글씨 크게 */
+#room #hudTitle {
+  font-size: clamp(15px, 2vw, 22px);
+  color: #30221b;
+  text-shadow: 0 1px 3px white;
+}
+
+#room .target {
+  font-size: clamp(11px, 1.5vw, 16px);
+  padding: 4px 6px;
+  background: rgba(255, 250, 245, 0.9);
+  font-weight: bold;
+}
+
+#room .target img {
+  width: 17px;
+  height: 17px;
+}
+
+#room #countBox {
+  font-size: clamp(12px, 1.5vw, 16px);
+  color: #30221b;
+  font-weight: bold;
+  text-shadow: 0 1px 3px white;
+}
+/* 찾은 물건 카운트 */
+#room #countBox {
+  display: table;
+  margin: 6px auto 0;
+  padding: 4px 14px;
+
+  background: rgba(255, 250, 245, 0.95);
+  border-radius: 12px;
+
+  color: #49372d;
+  font-size: clamp(14px, 1.8vw, 20px);
+  font-weight: bold;
+}
+
+#countBox {
+  margin-top: 4px;
+  text-align: center;
+  font-size: clamp(9px, 1.3vw, 13px);
+  color: #705e53;
+}
+#room #timerBox {
+  width: fit-content;
+  margin: 5px auto;
+  padding: 4px 12px;
+  background: #fffaf0;
+  border: 1px solid #9b7b68;
+  border-radius: 10px;
+  color: #49372d;
+  font-size: clamp(12px, 1.6vw, 18px);
+  font-weight: bold;
+}
+
+#room #timerBox.danger {
+  color: #e53935;
+}
+#retryBtn {
+  display: block;
+  margin: 14px auto 0;
+  padding: 10px 20px;
+  background: #6579ad;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+/* 체크리스트가 물건 클릭을 막지 않도록 */
+#hud {
+  pointer-events: none;
+}
+
+/* 립스틱 터치 영역 확대 */
+#item-lip {
+  min-width: 24px;
+  min-height: 24px;
+  z-index: 150;
+}
