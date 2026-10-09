@@ -461,3 +461,59 @@ button {
   font-weight: bold;
   cursor: pointer;
 }
+
+/* ===== 모바일 화면 최종 보정 ===== */
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+#game {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+#room {
+  position: relative;
+  width: min(100vw, 177.7778dvh);
+  height: auto;
+  aspect-ratio: 16 / 9;
+  max-height: none;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+#roomBg {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+/* 핸드폰 세로 방향 */
+@media (orientation: portrait) {
+  #room {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: min(100dvh, 177.7778vw);
+    height: auto;
+    aspect-ratio: 16 / 9;
+    max-height: none;
+    transform: translate(-50%, -50%) rotate(90deg);
+    transform-origin: center;
+  }
+
+  #hud {
+    width: 76%;
+  }
+
+  .character {
+    width: 9%;
+  }
+}
