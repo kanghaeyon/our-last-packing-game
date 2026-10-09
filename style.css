@@ -517,31 +517,26 @@ html, body {
     width: 9%;
   }
 }
-/* 체크리스트 네모칸 축소 */
-#hud {
-  width: 60%;
-  padding: 4px 7px;
+/* 체크리스트 전체 네모칸 축소 */
+#room #hud {
+  width: 52%;
+  padding: 4px 6px;
 }
 
-#hudTitle {
-  font-size: clamp(11px, 1.5vw, 17px);
-  margin-bottom: 3px;
+#room #hudTitle {
+  font-size: clamp(10px, 1.3vw, 15px);
 }
 
-#targetList {
-  gap: 3px;
+#room #targetList {
+  gap: 2px;
 }
 
-.target {
-  padding: 2px 4px;
-  font-size: clamp(8px, 1vw, 11px);
+#room .target {
+  padding: 2px 3px;
+  font-size: clamp(7px, 0.9vw, 10px);
 }
 
-.target img {
-  width: 12px;
-  height: 12px;
-}
-
-#countBox {
-  margin-top: 2px;
+#room .target img {
+  width: 11px;
+  height: 11px;
 }
