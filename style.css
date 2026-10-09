@@ -232,7 +232,7 @@ button {
 /* 충전기 - 협탁 아래쪽 */
 #item-charge {
   left: 39.5%;
-  top: 60%;
+  top: 55%;
   width: 4.7%;
   transform: rotate(10deg);
   z-index: 80;
@@ -516,4 +516,32 @@ html, body {
   .character {
     width: 9%;
   }
+}
+/* 체크리스트 네모칸 축소 */
+#hud {
+  width: 60%;
+  padding: 4px 7px;
+}
+
+#hudTitle {
+  font-size: clamp(11px, 1.5vw, 17px);
+  margin-bottom: 3px;
+}
+
+#targetList {
+  gap: 3px;
+}
+
+.target {
+  padding: 2px 4px;
+  font-size: clamp(8px, 1vw, 11px);
+}
+
+.target img {
+  width: 12px;
+  height: 12px;
+}
+
+#countBox {
+  margin-top: 2px;
 }
